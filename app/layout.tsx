@@ -7,6 +7,7 @@ import { Toaster } from "sonner"
 import { ScrollProgress } from "@/components/animations/scroll-progress"
 import { SplashScreen } from "@/components/splash-screen"
 import { StructuredData } from "@/components/structured-data"
+import { ThemeProvider } from "@/components/theme-provider"
 
 const geistSans = Geist({ subsets: ["latin"] })
 const geistMono = Geist_Mono({ subsets: ["latin"] })
@@ -96,14 +97,16 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <StructuredData type="all" />
-        <SplashScreen />
-        <ScrollProgress />
-        {children}
-        <Toaster position="top-right" richColors />
-        <Analytics />
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <StructuredData type="all" />
+          <SplashScreen />
+          <ScrollProgress />
+          {children}
+          <Toaster position="top-right" richColors />
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   )

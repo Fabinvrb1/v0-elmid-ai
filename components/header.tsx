@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react"
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -92,7 +93,8 @@ export function Header() {
             </Link>
           </nav>
 
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center gap-4">
+            <ThemeToggle />
             <Link href="/contato">
               <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
                 Começar Projeto
@@ -145,11 +147,14 @@ export function Header() {
               >
                 Contato
               </Link>
-              <Link href="/contato" onClick={() => setIsMenuOpen(false)}>
-                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 w-full">
-                  Começar Projeto
-                </Button>
-              </Link>
+              <div className="flex items-center gap-3 pt-2">
+                <ThemeToggle />
+                <Link href="/contato" onClick={() => setIsMenuOpen(false)} className="flex-1">
+                  <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 w-full">
+                    Começar Projeto
+                  </Button>
+                </Link>
+              </div>
             </div>
           </nav>
         )}
