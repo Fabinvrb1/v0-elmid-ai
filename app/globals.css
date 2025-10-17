@@ -40,38 +40,63 @@
 }
 
 .dark {
-  --background: oklch(0.1 0 0);
-  --foreground: oklch(0.98 0 0);
-  --card: oklch(0.13 0 0);
-  --card-foreground: oklch(0.98 0 0);
-  --popover: oklch(0.13 0 0);
-  --popover-foreground: oklch(0.98 0 0);
-  --primary: oklch(0.98 0 0);
-  --primary-foreground: oklch(0.15 0 0);
-  --secondary: oklch(0.55 0.15 260);
-  --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.2 0 0);
-  --muted-foreground: oklch(0.65 0 0);
-  --accent: oklch(0.55 0.15 260);
-  --accent-foreground: oklch(0.98 0 0);
-  --destructive: oklch(0.5 0.2 27);
-  --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.25 0 0);
-  --input: oklch(0.25 0 0);
-  --ring: oklch(0.55 0.15 260);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  /* Ultra modern dark mode - Inspirado em Vercel, GitHub & Linear */
+
+  /* Backgrounds - Gradiente sutil de cinza escuro (não preto puro) */
+  --background: oklch(0.12 0.005 265);
+  --foreground: oklch(0.95 0.005 265);
+
+  /* Cards - Elevação sutil com tom azulado */
+  --card: oklch(0.15 0.008 265);
+  --card-foreground: oklch(0.95 0.005 265);
+
+  /* Popovers - Mais contraste */
+  --popover: oklch(0.16 0.008 265);
+  --popover-foreground: oklch(0.95 0.005 265);
+
+  /* Primary - Roxo vibrante moderno */
+  --primary: oklch(0.68 0.19 270);
+  --primary-foreground: oklch(0.99 0 0);
+
+  /* Secondary - Azul cyan moderno */
+  --secondary: oklch(0.62 0.16 230);
+  --secondary-foreground: oklch(0.99 0 0);
+
+  /* Muted - Cinza médio suave */
+  --muted: oklch(0.22 0.008 265);
+  --muted-foreground: oklch(0.60 0.005 265);
+
+  /* Accent - Gradient roxo/azul */
+  --accent: oklch(0.65 0.18 260);
+  --accent-foreground: oklch(0.99 0 0);
+
+  /* Destructive - Vermelho suave */
+  --destructive: oklch(0.58 0.20 25);
+  --destructive-foreground: oklch(0.99 0 0);
+
+  /* Borders - Sutil com toque azulado */
+  --border: oklch(0.24 0.010 265);
+  --input: oklch(0.24 0.010 265);
+
+  /* Ring - Roxo vibrante para focus */
+  --ring: oklch(0.68 0.19 270);
+
+  /* Charts - Paleta vibrante moderna */
+  --chart-1: oklch(0.70 0.22 270);
+  --chart-2: oklch(0.68 0.18 200);
+  --chart-3: oklch(0.75 0.17 160);
+  --chart-4: oklch(0.72 0.20 320);
+  --chart-5: oklch(0.70 0.19 50);
+
+  /* Sidebar - Consistente com o tema */
+  --sidebar: oklch(0.14 0.008 265);
+  --sidebar-foreground: oklch(0.92 0.005 265);
+  --sidebar-primary: oklch(0.68 0.19 270);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.18 0.008 265);
+  --sidebar-accent-foreground: oklch(0.92 0.005 265);
+  --sidebar-border: oklch(0.24 0.010 265);
+  --sidebar-ring: oklch(0.68 0.19 270);
 }
 
 @theme inline {
@@ -124,9 +149,60 @@
   }
 }
 
+/* Gradient Text - Moderno com animação sutil */
 .gradient-text {
-  background: linear-gradient(135deg, oklch(0.45 0.15 260) 0%, oklch(0.35 0.12 280) 100%);
+  background: linear-gradient(135deg, oklch(0.68 0.19 270) 0%, oklch(0.62 0.16 230) 50%, oklch(0.70 0.18 290) 100%);
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradient-shift 8s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Dark mode específico - Cards com glow sutil */
+.dark .bg-card {
+  background: oklch(0.15 0.008 265);
+  border: 1px solid oklch(0.24 0.010 265);
+  box-shadow: 0 0 0 1px oklch(0.20 0.010 265 / 0.3),
+              0 2px 4px oklch(0 0 0 / 0.3);
+}
+
+/* Hover effects modernos */
+.dark button:hover,
+.dark a:hover {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Glow effect para elementos interativos no dark mode */
+.dark .glow-effect {
+  box-shadow: 0 0 20px oklch(0.68 0.19 270 / 0.15),
+              0 0 40px oklch(0.68 0.19 270 / 0.1);
+}
+
+/* Scroll suave com gradiente */
+.dark ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: oklch(0.12 0.005 265);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: oklch(0.30 0.010 265);
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.40 0.015 265);
 }
