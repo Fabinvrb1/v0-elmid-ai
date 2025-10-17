@@ -3,13 +3,10 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
-import { ChatWidget } from "@/components/chat-widget"
 import { Toaster } from "sonner"
-import { GoogleAnalytics } from "@/components/google-analytics"
 import { ScrollProgress } from "@/components/animations/scroll-progress"
 import { SplashScreen } from "@/components/splash-screen"
 import { StructuredData } from "@/components/structured-data"
-import { NewsletterPopup } from "@/components/newsletter-popup"
 
 const geistSans = Geist({ subsets: ["latin"] })
 const geistMono = Geist_Mono({ subsets: ["latin"] })
@@ -90,12 +87,7 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-touch-icon.jpg", sizes: "180x180", type: "image/png" }],
   },
   manifest: "/manifest.json",
-  verification: {
-    google: "your-google-verification-code",
-    // yandex: 'your-yandex-verification-code',
-    // bing: 'your-bing-verification-code',
-  },
-    generator: 'v0.app'
+  generator: 'v0.app'
 }
 
 export default function RootLayout({
@@ -110,11 +102,8 @@ export default function RootLayout({
         <SplashScreen />
         <ScrollProgress />
         {children}
-        <ChatWidget />
-        <NewsletterPopup />
         <Toaster position="top-right" richColors />
         <Analytics />
-        <GoogleAnalytics />
       </body>
     </html>
   )

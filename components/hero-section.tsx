@@ -2,16 +2,11 @@
 
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Sparkles } from "lucide-react"
-import { useGoogleAnalytics } from "@/hooks/use-google-analytics"
-import { useScrollTracking } from "@/hooks/use-scroll-tracking"
 import Link from "next/link"
 import { FadeIn } from "@/components/animations/fade-in"
 import { CountUpAnimation } from "@/components/animations/count-up"
 
 export function HeroSection() {
-  const { trackCTA } = useGoogleAnalytics()
-  useScrollTracking()
-
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-20">
       {/* Background Pattern */}
@@ -49,20 +44,11 @@ export function HeroSection() {
                 <Button
                   size="lg"
                   className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-8 h-12 group"
-                  onClick={() => trackCTA("Iniciar Projeto", "Hero Section")}
                 >
                   Iniciar Projeto
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
-              <Button
-                size="lg"
-                variant="outline"
-                className="text-base px-8 h-12 bg-transparent"
-                onClick={() => trackCTA("Ver Nosso Trabalho", "Hero Section")}
-              >
-                Ver Nosso Trabalho
-              </Button>
             </div>
           </FadeIn>
 

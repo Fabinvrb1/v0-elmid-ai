@@ -4,8 +4,8 @@ import ContatoClientPage from "./contato-client"
 export const metadata: Metadata = {
   title: "Contato | elmid.ai - Fale Conosco",
   description:
-    "Entre em contato com a elmid.ai. Agende uma reunião gratuita, envie seu projeto ou fale no WhatsApp. Resposta em até 24 horas.",
-  keywords: "contato elmid.ai, orçamento desenvolvimento, agendar reunião, software house contato",
+    "Entre em contato com a elmid.ai. Envie seu projeto ou fale no WhatsApp. Resposta em até 24 horas.",
+  keywords: "contato elmid.ai, orçamento desenvolvimento, software house contato, falar com especialista",
   openGraph: {
     title: "Contato | elmid.ai",
     description: "Fale com especialistas em desenvolvimento de software",

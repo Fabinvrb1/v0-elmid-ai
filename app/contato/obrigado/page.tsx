@@ -87,7 +87,7 @@ export default function ObrigadoPage() {
                 </div>
                 <h3 className="text-lg font-semibold text-foreground mb-4">Falar no WhatsApp</h3>
                 <a
-                  href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5511999999999"}`}
+                  href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5511948182061"}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

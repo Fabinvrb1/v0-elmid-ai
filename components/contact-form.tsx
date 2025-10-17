@@ -11,12 +11,10 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { useGoogleAnalytics } from "@/hooks/use-google-analytics"
 
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
-  const { trackForm } = useGoogleAnalytics()
 
   const {
     register,
@@ -52,7 +50,6 @@ export function ContactForm() {
 
       // Sucesso
       setIsSuccess(true)
-      trackForm("Contact Form", true)
       toast.success("Mensagem enviada com sucesso!", {
         description: "Entraremos em contato em breve.",
         duration: 5000,
@@ -65,7 +62,6 @@ export function ContactForm() {
       }, 2000)
     } catch (error) {
       console.error("[v0] Erro ao enviar formulário:", error)
-      trackForm("Contact Form", false)
       toast.error("Erro ao enviar mensagem", {
         description: error instanceof Error ? error.message : "Tente novamente mais tarde.",
         duration: 5000,
@@ -119,7 +115,7 @@ export function ContactForm() {
           <Input
             id="phone"
             type="tel"
-            placeholder="(11) 99999-9999"
+            placeholder="(11) 94818-2061"
             className="bg-background border-border text-foreground"
             {...register("phone")}
             disabled={isSubmitting}

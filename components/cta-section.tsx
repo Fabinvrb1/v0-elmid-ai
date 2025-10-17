@@ -3,11 +3,8 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
-import { useGoogleAnalytics } from "@/hooks/use-google-analytics"
 
 export function CTASection() {
-  const { trackCTA } = useGoogleAnalytics()
-
   return (
     <section id="contato" className="py-24 lg:py-32 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
@@ -26,20 +23,9 @@ export function CTASection() {
                   <Button
                     size="lg"
                     className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-8 h-12 group"
-                    onClick={() => trackCTA("Começar Agora", "CTA Section")}
                   >
-                    Começar Agora
+                    Entrar em Contato
                     <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </Link>
-                <Link href="/contato">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="text-base px-8 h-12 bg-transparent"
-                    onClick={() => trackCTA("Agendar Reunião", "CTA Section")}
-                  >
-                    Agendar Reunião
                   </Button>
                 </Link>
               </div>

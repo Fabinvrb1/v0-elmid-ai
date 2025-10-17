@@ -8,6 +8,8 @@ import { RelatedProjects } from "@/components/portfolio/related-projects"
 import { getProjectBySlug, getRelatedProjects, projects } from "@/data/projects"
 import { ExternalLink, Github, Quote } from "lucide-react"
 import type { Metadata } from "next"
+import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>
@@ -53,7 +55,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const relatedProjects = getRelatedProjects(project.id, project.category)
 
   return (
-    <main className="min-h-screen pt-20">
+    <>
+      <Header />
+      <main className="min-h-screen pt-20">
       {/* Header / Banner */}
       <section className="relative h-[60vh] min-h-[400px] bg-muted">
         <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" priority />
@@ -210,5 +214,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       {/* Related Projects */}
       <RelatedProjects projects={relatedProjects} />
     </main>
+    <Footer />
+    </>
   )
 }

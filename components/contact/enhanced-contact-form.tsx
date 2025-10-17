@@ -6,7 +6,7 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from "sonner"
-import { Loader2, Send, CheckCircle2, Upload, X } from "lucide-react"
+import { Loader2, Send, CheckCircle2 } from "lucide-react"
 import { contactFormSchema, type ContactFormData } from "@/lib/schemas/contact"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -14,14 +14,11 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
-import { useGoogleAnalytics } from "@/hooks/use-google-analytics"
 import { useRouter } from "next/navigation"
 
 export function EnhancedContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
-  const [uploadedFile, setUploadedFile] = useState<File | null>(null)
-  const { trackForm } = useGoogleAnalytics()
   const router = useRouter()
 
   const {
@@ -41,71 +38,17 @@ export function EnhancedContactForm() {
   const howFound = watch("howFound")
   const acceptTerms = watch("acceptTerms")
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (file) {
-      // Validate file size (max 5MB)
-      if (file.size > 5 * 1024 * 1024) {
-        toast.error("Arquivo muito grande", {
-          description: "O arquivo deve ter no máximo 5MB",
-        })
-        return
-      }
-
-      // Validate file type
-      const allowedTypes = [
-        "application/pdf",
-        "application/msword",
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-        "image/png",
-        "image/jpeg",
-      ]
-      if (!allowedTypes.includes(file.type)) {
-        toast.error("Tipo de arquivo não permitido", {
-          description: "Apenas PDF, DOC, DOCX, PNG e JPG são aceitos",
-        })
-        return
-      }
-
-      setUploadedFile(file)
-    }
-  }
-
-  const removeFile = () => {
-    setUploadedFile(null)
-  }
-
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true)
     setIsSuccess(false)
 
     try {
-      // If there's a file, upload it first
-      let fileUrl = null
-      if (uploadedFile) {
-        const formData = new FormData()
-        formData.append("file", uploadedFile)
-
-        const uploadResponse = await fetch("/api/upload", {
-          method: "POST",
-          body: formData,
-        })
-
-        if (uploadResponse.ok) {
-          const uploadResult = await uploadResponse.json()
-          fileUrl = uploadResult.url
-        }
-      }
-
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          ...data,
-          fileUrl,
-        }),
+        body: JSON.stringify(data),
       })
 
       const result = await response.json()
@@ -116,7 +59,6 @@ export function EnhancedContactForm() {
 
       // Sucesso
       setIsSuccess(true)
-      trackForm("Contact Form Enhanced", true)
       toast.success("Mensagem enviada com sucesso!", {
         description: "Redirecionando para página de confirmação...",
         duration: 3000,
@@ -128,7 +70,6 @@ export function EnhancedContactForm() {
       }, 2000)
     } catch (error) {
       console.error("[v0] Erro ao enviar formulário:", error)
-      trackForm("Contact Form Enhanced", false)
       toast.error("Erro ao enviar mensagem", {
         description: error instanceof Error ? error.message : "Tente novamente mais tarde.",
         duration: 5000,
@@ -180,7 +121,7 @@ export function EnhancedContactForm() {
           <Input
             id="phone"
             type="tel"
-            placeholder="(11) 99999-9999"
+            placeholder="(11) 94818-2061"
             className="bg-background border-border text-foreground"
             {...register("phone")}
             disabled={isSubmitting}
@@ -329,42 +270,6 @@ export function EnhancedContactForm() {
           disabled={isSubmitting}
         />
         {errors.message && <p className="text-sm text-destructive">{errors.message.message}</p>}
-      </div>
-
-      {/* Upload de Arquivo */}
-      <div className="space-y-2">
-        <Label htmlFor="file" className="text-foreground">
-          Anexar Arquivo (opcional)
-        </Label>
-        <div className="flex items-center gap-4">
-          <Input
-            id="file"
-            type="file"
-            accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"
-            onChange={handleFileChange}
-            disabled={isSubmitting}
-            className="hidden"
-          />
-          <Button
-            type="button"
-            variant="outline"
-            onClick={() => document.getElementById("file")?.click()}
-            disabled={isSubmitting || !!uploadedFile}
-            className="w-full"
-          >
-            <Upload className="w-4 h-4 mr-2" />
-            {uploadedFile ? "Arquivo anexado" : "Escolher arquivo"}
-          </Button>
-        </div>
-        {uploadedFile && (
-          <div className="flex items-center justify-between p-3 bg-muted rounded-md">
-            <span className="text-sm text-foreground truncate">{uploadedFile.name}</span>
-            <Button type="button" variant="ghost" size="sm" onClick={removeFile}>
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
-        )}
-        <p className="text-xs text-muted-foreground">PDF, DOC, DOCX, PNG, JPG (máx. 5MB)</p>
       </div>
 
       {/* Checkbox LGPD */}

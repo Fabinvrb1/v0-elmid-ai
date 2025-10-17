@@ -3,6 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Mail, Phone, Clock, Lock, Star } from "lucide-react"
+import Image from "next/image"
 
 export function ContactInfo() {
   return (
@@ -20,20 +21,13 @@ export function ContactInfo() {
               <span>contato@elmid.ai</span>
             </a>
             <a
-              href="https://wa.me/5511999999999"
+              href="https://wa.me/5511948182061"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors"
             >
               <Phone className="w-5 h-5" />
-              <span>+55 (11) 99999-9999</span>
-            </a>
-            <a
-              href="tel:+551133334444"
-              className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors"
-            >
-              <Phone className="w-5 h-5" />
-              <span>(11) 3333-4444</span>
+              <span>+55 (11) 94818-2061</span>
             </a>
             <div className="flex items-center gap-3 text-muted-foreground">
               <Clock className="w-5 h-5" />
@@ -47,12 +41,20 @@ export function ContactInfo() {
       <Card className="bg-primary/5 border-primary/20">
         <CardContent className="p-6">
           <div className="flex items-start gap-4 mb-4">
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white text-2xl font-bold">
-              JS
+            <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border-2 border-primary/20">
+              <Image
+                src="/images/Pedro-4.png?v=2"
+                alt="Pedro Nascimento"
+                width={64}
+                height={64}
+                className="object-cover object-center w-full h-full"
+                priority
+                unoptimized
+              />
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-1">
-                <h3 className="font-semibold text-foreground">João Silva</h3>
+                <h3 className="font-semibold text-foreground">Pedro Nascimento</h3>
                 <Badge variant="secondary" className="text-xs">
                   Resposta em 24h
                 </Badge>
@@ -61,7 +63,7 @@ export function ContactInfo() {
             </div>
           </div>
           <p className="text-sm text-muted-foreground">
-            Olá! Sou o João Silva, especialista em projetos digitais da elmid.ai. Vou analisar pessoalmente seu projeto
+            Olá! Sou o Pedro Nascimento, especialista em projetos digitais da elmid.ai. Vou analisar pessoalmente seu projeto
             e retornar em até 24 horas úteis.
           </p>
         </CardContent>

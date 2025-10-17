@@ -28,7 +28,7 @@ export function StructuredData({ type = "all" }: StructuredDataProps) {
     },
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+55-11-99999-9999",
+      telephone: "+55-11-94818-2061",
       contactType: "customer service",
       email: "contato@elmid.ai",
       availableLanguage: ["Portuguese", "English"],

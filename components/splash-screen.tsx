@@ -6,8 +6,19 @@ import Image from "next/image"
 
 export function SplashScreen() {
   const [isLoading, setIsLoading] = useState(true)
+  const [particles, setParticles] = useState<Array<{ x: number; y: number; left: string; top: string }>>([])
 
   useEffect(() => {
+    // Generate particle positions only on client
+    setParticles(
+      [...Array(6)].map(() => ({
+        x: Math.random() * 200 - 100,
+        y: Math.random() * 200 - 100,
+        left: `${50 + Math.random() * 10 - 5}%`,
+        top: `${50 + Math.random() * 10 - 5}%`,
+      }))
+    )
+
     // Duração total da animação: 2.5 segundos
     const timer = setTimeout(() => {
       setIsLoading(false)
@@ -131,15 +142,15 @@ export function SplashScreen() {
           </div>
 
           {/* Particle effects */}
-          {[...Array(6)].map((_, i) => (
+          {particles.map((particle, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, scale: 0 }}
               animate={{
                 opacity: [0, 0.6, 0],
                 scale: [0, 1, 0],
-                x: [0, Math.random() * 200 - 100],
-                y: [0, Math.random() * 200 - 100],
+                x: [0, particle.x],
+                y: [0, particle.y],
               }}
               transition={{
                 duration: 2,
@@ -149,8 +160,8 @@ export function SplashScreen() {
               }}
               className="absolute h-2 w-2 rounded-full bg-primary/40"
               style={{
-                left: `${50 + Math.random() * 10 - 5}%`,
-                top: `${50 + Math.random() * 10 - 5}%`,
+                left: particle.left,
+                top: particle.top,
               }}
             />
           ))}

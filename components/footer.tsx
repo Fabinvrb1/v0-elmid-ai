@@ -1,11 +1,8 @@
 "use client"
 
-import { useGoogleAnalytics } from "@/hooks/use-google-analytics"
 import Image from "next/image"
 
 export function Footer() {
-  const { trackContact } = useGoogleAnalytics()
-
   return (
     <footer className="bg-muted/30 border-t border-border py-12">
       <div className="container mx-auto px-4 lg:px-8">
@@ -68,18 +65,18 @@ export function Footer() {
                 <a
                   href="mailto:contato@elmid.ai"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  onClick={() => trackContact("email")}
                 >
                   contato@elmid.ai
                 </a>
               </li>
               <li>
                 <a
-                  href="tel:+5511999999999"
+                  href="https://wa.me/5511948182061"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  onClick={() => trackContact("phone")}
                 >
-                  +55 (11) 9999-9999
+                  +55 (11) 94818-2061
                 </a>
               </li>
             </ul>

@@ -11,7 +11,7 @@ export const contactFormSchema = z.object({
       (val) => {
         if (!val) return true
         // Formato brasileiro: (XX) XXXXX-XXXX ou (XX) XXXX-XXXX
-        const phoneRegex = /^$$?[1-9]{2}$$?\s?9?\d{4}-?\d{4}$/
+        const phoneRegex = /^\(?[1-9]{2}\)?\s?9?\d{4}-?\d{4}$/
         return phoneRegex.test(val.replace(/\s/g, ""))
       },
       { message: "Telefone inválido. Use o formato (XX) XXXXX-XXXX" },
